@@ -64,8 +64,8 @@ def convert_to_tfrecord(input_files, output_file):
         record_writer.write(example.SerializeToString())
 
 
-def GenerateTFEmain():
-  data_dir = 'C:\Amit Stuff\Analytic\Deep Learning\EVA-2019-Rohan\Session-14\Assignments\Final'
+def GenerateTFEmain(data_dir):
+  # data_dir = 'C:\Amit Stuff\Analytic\Deep Learning\EVA-2019-Rohan\Session-14\Assignments\Final'
   print('Download from {} and extract.'.format(CIFAR_DOWNLOAD_URL))
   download_and_extract(data_dir)
   file_names = _get_file_names()
