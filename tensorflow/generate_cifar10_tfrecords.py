@@ -81,4 +81,4 @@ def GenerateTFEmain():
     convert_to_tfrecord(input_files, output_file)
   print('Done!')
 
-GenerateTFEmain()
+# GenerateTFEmain()
