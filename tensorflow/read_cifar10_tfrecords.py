@@ -32,15 +32,14 @@ from keras.callbacks import Callback
 
 
 
-HEIGHT = 32
-WIDTH = 32
-DEPTH = 3
-SHUFFLE_BUFFER=512
+batch_size = 512
+SHUFFLE_BUFFER=256
 BATCH_SIZE=512
 HEIGHT = 32
 WIDTH = 32
 DEPTH = 3
 SUM_OF_ALL_DATASAMPLES = 50000
+num_classes = 10
 
 def preprocess(subset,image):
     # """Preprocess a single image in [height, width, depth] layout."""
