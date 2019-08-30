@@ -53,7 +53,7 @@ def preprocess(subset,image):
   return image
 
 
-  def parser(serialized_example):
+def parser(serialized_example):
     """Parses a single tf.Example into image and label tensors."""
     # Dimensions of the images in the CIFAR-10 dataset.
     # See http://www.cs.toronto.edu/~kriz/cifar.html for a description of the
@@ -78,7 +78,7 @@ def preprocess(subset,image):
 
     return image, label
 
-  def valparser(serialized_example):
+def valparser(serialized_example):
     """Parses a single tf.Example into image and label tensors."""
     # Dimensions of the images in the CIFAR-10 dataset.
     # See http://www.cs.toronto.edu/~kriz/cifar.html for a description of the
