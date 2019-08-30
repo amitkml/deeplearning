@@ -77,13 +77,63 @@ def preprocess(subset,image):
     image = preprocess('training',image)
 
     return image, label
+
+  def valparser(serialized_example):
+    """Parses a single tf.Example into image and label tensors."""
+    # Dimensions of the images in the CIFAR-10 dataset.
+    # See http://www.cs.toronto.edu/~kriz/cifar.html for a description of the
+    # input format.
+    features = tf.parse_single_example(
+        serialized_example,
+        features={
+            'image': tf.FixedLenFeature([], tf.string),
+            'label': tf.FixedLenFeature([], tf.int64),
+        })
+    image = tf.decode_raw(features['image'], tf.uint8)
+    image.set_shape([DEPTH * HEIGHT * WIDTH])
+
+    # Reshape from [depth * height * width] to [depth, height, width].
+    image = tf.cast(
+        tf.transpose(tf.reshape(image, [DEPTH, HEIGHT, WIDTH]), [1, 2, 0]),
+        tf.float32)
+    label = tf.cast(features['label'], tf.int32)
+
+    # Custom preprocessing.
+    # image = preprocess('training',image)
+
+    return image, label
+
   # """Read the images and labels from 'filenames'."""
   # Repeat infinitely.
 def make_batch(filename, batch_size):
-  dataset = tf.data.TFRecordDataset(filenames).repeat()
+  dataset = tf.data.TFRecordDataset(filename).repeat()
   # Parse records.
   dataset = dataset.map(
       parser, num_parallel_calls=batch_size)
+
+  # # Potentially shuffle records.
+  # if subset == 'train':
+  #   min_queue_examples = int(
+  #         Cifar10DataSet.num_examples_per_epoch(self.subset) * 0.4)
+  #     # Ensure that the capacity is sufficiently large to provide good random
+  #     # shuffling.
+  # dataset = dataset.shuffle(SHUFFLE_BUFFER )
+
+    # Batch it up.
+  dataset = dataset.batch(BATCH_SIZE)
+  iterator = dataset.make_one_shot_iterator()
+  image_batch, label_batch = iterator.get_next()
+   # Create a one hot array for your labels
+  label_batch = tf.one_hot(label_batch, num_classes)
+  return image_batch, label_batch
+
+  # """Read the images and labels from 'filenames'."""
+  # Repeat infinitely.
+def val_make_batch(filename, batch_size):
+  dataset = tf.data.TFRecordDataset(filename).repeat()
+  # Parse records.
+  dataset = dataset.map(
+      valparser, num_parallel_calls=batch_size)
 
   # # Potentially shuffle records.
   # if subset == 'train':
