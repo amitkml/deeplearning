@@ -40,14 +40,38 @@ WIDTH = 32
 DEPTH = 3
 SUM_OF_ALL_DATASAMPLES = 50000
 num_classes = 10
-
+IMAGE_SIZE = 24
+# IMAGE_SIZE =24
 def preprocess(subset,image):
+    # """Preprocess a single image in [height, width, depth] layout."""
+  if subset == 'train' :
+
+    # Pad 4 pixels on each dimension of feature map, done in mini-batch
+    # image = tf.image.resize_image_with_crop_or_pad(image, 32, 32)
+    ##       # Randomly crop a [height, width] section of the image.
+
+    image = tf.random_crop(image, [IMAGE_SIZE, IMAGE_SIZE, DEPTH])
+    image = tf.image.random_flip_left_right(image)
+    image = tf.image.per_image_standardization(image)
+  return image
+
+def aug_preprocess(subset,image):
     # """Preprocess a single image in [height, width, depth] layout."""
   if subset == 'train' :
 
     # Pad 4 pixels on each dimension of feature map, done in mini-batch
     image = tf.image.resize_image_with_crop_or_pad(image, 40, 40)
     image = tf.random_crop(image, [HEIGHT, WIDTH, DEPTH])
+    image = tf.image.random_flip_left_right(image)
+  return image
+
+def val_preprocess(image):
+    # """Preprocess a single image in [height, width, depth] layout."""
+  if subset == 'train' :
+
+    # Pad 4 pixels on each dimension of feature map, done in mini-batch
+    # image = tf.image.resize_image_with_crop_or_pad(image, 40, 40)
+    # image = tf.random_crop(image, [HEIGHT, WIDTH, DEPTH])
     image = tf.image.random_flip_left_right(image)
   return image
 
@@ -98,7 +122,7 @@ def valparser(serialized_example):
     label = tf.cast(features['label'], tf.int32)
 
     # Custom preprocessing.
-    # image = preprocess('training',image)
+    image = val_preprocess(image)
 
     return image, label
 
