@@ -36,7 +36,41 @@ def show_classification_matrix(Y_pred, test_labels):
     # # compute the confusion matrix
     print("Confusion matrix:\n%s" % confusion_matrix(y_true=Y_true, y_pred=Y_pred_classes))
     # compute the confusion matrix
+    class_names = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
     confusion_mtx = confusion_matrix(Y_true, Y_pred_classes)
+    # plot_confusion_matrix(confusion_mtx, classes=class_names,
+    #                   title='Confusion matrix, without normalization')
+    return confusion_mtx
+
+def show_classification_matrix_image(Y_pred, test_labels):
+    from sklearn.metrics import accuracy_score  # works
+    from sklearn.metrics import precision_score
+    from sklearn.metrics import recall_score
+    from sklearn.metrics import f1_score
+    from sklearn.metrics import classification_report
+    from sklearn.metrics import confusion_matrix
+    import itertools
+    import operator
+    from PIL import Image
+    from PIL import ImageDraw
+
+    from keras.datasets import cifar10
+    import time
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import os
+    # This function will be used to display confusion matrix
+    # Convert predictions classes to one hot vectors
+    Y_pred_classes = np.argmax(Y_pred, axis=1)
+    # Convert validation observations to one hot vectors
+    Y_true = np.argmax(test_labels, axis=1)
+    # # compute the confusion matrix
+    print("Confusion matrix:\n%s" % confusion_matrix(y_true=Y_true, y_pred=Y_pred_classes))
+    # compute the confusion matrix
+    class_names = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+    confusion_mtx = confusion_matrix(Y_true, Y_pred_classes)
+    plot_confusion_matrix(confusion_mtx, classes=class_names,
+                      title='Confusion matrix, without normalization')
     return confusion_mtx
 
 
@@ -273,4 +307,39 @@ def draw_image_cifar10(i):
     plt.title("Class %d (%s)" % (c, class_name[c]))
     plt.axis('on')
 
+def plot_confusion_matrix(cm, classes,
+                          normalize=False,
+                          title='Confusion matrix',
+                          cmap=plt.cm.Blues):
+    """
+    This function prints and plots the confusion matrix.
+    Normalization can be applied by setting `normalize=True`.
+    """
+    import matplotlib.pyplot as plt
+    import itertools
+    class_names = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+    if normalize:
+        cm = cm.astype('float') / cm.sum(axis=1)[:, np.newaxis]
+        print("Normalized confusion matrix")
+    else:
+        print('Confusion matrix, without normalization')
 
+    print(cm)
+
+    plt.imshow(cm, interpolation='nearest', cmap=cmap)
+    plt.title(title)
+    plt.colorbar()
+    tick_marks = np.arange(len(classes))
+    plt.xticks(tick_marks, classes, rotation=45)
+    plt.yticks(tick_marks, classes)
+
+    fmt = '.2f' if normalize else 'd'
+    thresh = cm.max() / 2.
+    for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
+        plt.text(j, i, format(cm[i, j], fmt),
+                 horizontalalignment="center",
+                 color="white" if cm[i, j] > thresh else "black")
+
+    plt.ylabel('True label')
+    plt.xlabel('Predicted label')
+    plt.tight_layout()
