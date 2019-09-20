@@ -192,23 +192,21 @@ def draw_sample(n, rows=4, cols=4, imfile=None, fontsize=12):
   import os
 
     ## https://samyzaf.com/ML/cifar10/cifar10.html
-    (X_train, y_train), (X_test, y_test) = cifar10.load_data()
-    y_train = y_train.reshape(y_train.shape[0])  # somehow y_train comes as a 2D nx1 matrix
+  (X_train, y_train), (X_test, y_test) = cifar10.load_data()
+  y_train = y_train.reshape(y_train.shape[0])  # somehow y_train comes as a 2D nx1 matrix
     ## To test the second utility, let's draw the first 15 images in a 3x5 grid:
     ## draw_sample(0, 3, 5)
 
 
-    for i in range(0, rows*cols):
-        plt.subplot(rows, cols, i+1)
-        im = X_train[n+i].reshape(32,32,3)
-        plt.imshow(im, cmap='gnuplot2')
-        plt.title("{}".format(class_name[y_train[n+i]]), fontsize=fontsize)
-        plt.axis('off')
-        plt.subplots_adjust(wspace=0.6, hspace=0.01)
-        #plt.subplots_adjust(hspace=0.45, wspace=0.45)
-        #plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
-    if imfile:
-        plt.savefig(imfile)
+  for i in range(0, rows*cols):
+      plt.subplot(rows, cols, i+1)
+      im = X_train[n+i].reshape(32,32,3)
+      plt.imshow(im, cmap='gnuplot2')
+      plt.title("{}".format(class_name[y_train[n+i]]), fontsize=fontsize)
+      plt.axis('off')
+      plt.subplots_adjust(wspace=0.6, hspace=0.01)
+      #plt.subplots_adjust(hspace=0.45, wspace=0.45)
+      #plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
 
 def display_each_class_one_cifar10():
   from keras.datasets import cifar10
