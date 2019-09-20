@@ -185,51 +185,50 @@ def cifar10_misclassified_gradcam_heatmap_images(Y_pred,Y_true_nor,X_test,model2
   plt.tight_layout()
 
 def draw_sample(n, rows=4, cols=4, imfile=None, fontsize=12):
-  from keras.datasets import cifar10
-  import time
-  import matplotlib.pyplot as plt
-  import numpy as np
-  import os
+    from keras.datasets import cifar10
+    import time
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import os
 
-    ## https://samyzaf.com/ML/cifar10/cifar10.html
-  (X_train, y_train), (X_test, y_test) = cifar10.load_data()
-  y_train = y_train.reshape(y_train.shape[0])  # somehow y_train comes as a 2D nx1 matrix
-    ## To test the second utility, let's draw the first 15 images in a 3x5 grid:
-    ## draw_sample(0, 3, 5)
+    (X_train, y_train), (X_test, y_test) = cifar10.load_data()
+    y_train = y_train.reshape(y_train.shape[0])  # somehow y_train comes as a 2D nx1 matrix
+  ## To test the second utility, let's draw the first 15 images in a 3x5 grid:
+  ## draw_sample(0, 3, 5)
 
 
-  for i in range(0, rows*cols):
-      plt.subplot(rows, cols, i+1)
-      im = X_train[n+i].reshape(32,32,3)
-      plt.imshow(im, cmap='gnuplot2')
-      plt.title("{}".format(class_name[y_train[n+i]]), fontsize=fontsize)
-      plt.axis('off')
-      plt.subplots_adjust(wspace=0.6, hspace=0.01)
-      #plt.subplots_adjust(hspace=0.45, wspace=0.45)
-      #plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
+    for i in range(0, rows*cols):
+        plt.subplot(rows, cols, i+1)
+        im = X_train[n+i].reshape(32,32,3)
+        plt.imshow(im, cmap='gnuplot2')
+        plt.title("{}".format(class_name[y_train[n+i]]), fontsize=fontsize)
+        plt.axis('off')
+        plt.subplots_adjust(wspace=0.6, hspace=0.01)
+        #plt.subplots_adjust(hspace=0.45, wspace=0.45)
+        #plt.tight_layout(pad=0.4, w_pad=0.5, h_pad=1.0)
 
 def display_each_class_one_cifar10():
-  from keras.datasets import cifar10
-  import time
-  import matplotlib.pyplot as plt
-  import numpy as np
-  import os
+    from keras.datasets import cifar10
+    import time
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import os
 
 
-  num_classes =10
-  (train_features, train_labels), (test_features, test_labels) = cifar10.load_data()
-  class_names = ['airplane','automobile','bird','cat','deer',
-                 'dog','frog','horse','ship','truck']
-  fig = plt.figure(figsize=(12,12))
-  for i in range(num_classes):
-      ax = fig.add_subplot(2, 5, 1 + i, xticks=[], yticks=[])
-      idx = np.where(train_labels[:]==i)[0]
-      features_idx = train_features[idx,::]
-      img_num = np.random.randint(features_idx.shape[0])
-      im = features_idx[img_num]
-      ax.set_title(class_names[i])
-      plt.imshow(im)
-  plt.show()
+    num_classes =10
+    (train_features, train_labels), (test_features, test_labels) = cifar10.load_data()
+    class_names = ['airplane','automobile','bird','cat','deer',
+                   'dog','frog','horse','ship','truck']
+    fig = plt.figure(figsize=(12,12))
+    for i in range(num_classes):
+        ax = fig.add_subplot(2, 5, 1 + i, xticks=[], yticks=[])
+        idx = np.where(train_labels[:]==i)[0]
+        features_idx = train_features[idx,::]
+        img_num = np.random.randint(features_idx.shape[0])
+        im = features_idx[img_num]
+        ax.set_title(class_names[i])
+        plt.imshow(im)
+    plt.show()
 
 def show_one_class_images_cifar10(classname ='CAT',numimage=10):
   from keras.datasets import cifar10
