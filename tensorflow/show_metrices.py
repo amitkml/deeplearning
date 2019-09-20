@@ -186,6 +186,11 @@ def draw_sample(n, rows=4, cols=4, imfile=None, fontsize=12):
         plt.savefig(imfile)
 
 def display_each_class_one_cifar10():
+  from keras.datasets import cifar10
+  import time
+  import matplotlib.pyplot as plt
+  import numpy as np
+  import os
     from keras.datasets import cifar10
     num_classes =10
     (train_features, train_labels), (test_features, test_labels) = cifar10.load_data()
