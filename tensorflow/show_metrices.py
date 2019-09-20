@@ -1,17 +1,33 @@
-from sklearn.metrics import accuracy_score  # works
-from sklearn.metrics import precision_score
-from sklearn.metrics import recall_score
-from sklearn.metrics import f1_score
-from sklearn.metrics import classification_report
-from sklearn.metrics import confusion_matrix
-# import for showing the confusion matrix
-import itertools
-import operator
-from PIL import Image
-from PIL import ImageDraw
-import numpy as np
+# from sklearn.metrics import accuracy_score  # works
+# from sklearn.metrics import precision_score
+# from sklearn.metrics import recall_score
+# from sklearn.metrics import f1_score
+# from sklearn.metrics import classification_report
+# from sklearn.metrics import confusion_matrix
+# # import for showing the confusion matrix
+# import itertools
+# import operator
+# from PIL import Image
+# from PIL import ImageDraw
+# import numpy as np
 
 def show_classification_matrix(Y_pred, test_labels):
+    from sklearn.metrics import accuracy_score  # works
+    from sklearn.metrics import precision_score
+    from sklearn.metrics import recall_score
+    from sklearn.metrics import f1_score
+    from sklearn.metrics import classification_report
+    from sklearn.metrics import confusion_matrix
+    import itertools
+    import operator
+    from PIL import Image
+    from PIL import ImageDraw
+
+    from keras.datasets import cifar10
+    import time
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import os
     # This function will be used to display confusion matrix
     # Convert predictions classes to one hot vectors
     Y_pred_classes = np.argmax(Y_pred, axis=1)
@@ -25,6 +41,12 @@ def show_classification_matrix(Y_pred, test_labels):
 
 
 def show_misclassified_images_cifar10(Y_pred, Y_true_nor, X_test):
+    from keras.datasets import cifar10
+    import time
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import os
+
     class_names = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
     # print(score)
     # Convert validation observations to one hot vectors
@@ -75,6 +97,11 @@ def show_misclassified_images_cifar10(Y_pred, Y_true_nor, X_test):
     plt.tight_layout()
 
 def cifar10_misclassified_gradcam_heatmap_images(Y_pred,Y_true_nor,X_test,model2):
+  from keras.datasets import cifar10
+  import time
+  import matplotlib.pyplot as plt
+  import numpy as np
+  import os
 
   class_names = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
 
@@ -158,6 +185,7 @@ def cifar10_misclassified_gradcam_heatmap_images(Y_pred,Y_true_nor,X_test,model2
   plt.tight_layout()
 
 def draw_img(i):
+    import matplotlib.pyplot as plt
     ##Let's draw image 7 in X_train for example
     ## draw_img(7)
     im = X_train[i]
@@ -167,6 +195,12 @@ def draw_img(i):
     plt.axis('on')
 
 def draw_sample(n, rows=4, cols=4, imfile=None, fontsize=12):
+  from keras.datasets import cifar10
+  import time
+  import matplotlib.pyplot as plt
+  import numpy as np
+  import os
+
     ## https://samyzaf.com/ML/cifar10/cifar10.html
     (X_train, y_train), (X_test, y_test) = cifar10.load_data()
     y_train = y_train.reshape(y_train.shape[0])  # somehow y_train comes as a 2D nx1 matrix
@@ -191,21 +225,22 @@ def display_each_class_one_cifar10():
   import matplotlib.pyplot as plt
   import numpy as np
   import os
-    from keras.datasets import cifar10
-    num_classes =10
-    (train_features, train_labels), (test_features, test_labels) = cifar10.load_data()
-    class_names = ['airplane','automobile','bird','cat','deer',
-                   'dog','frog','horse','ship','truck']
-    fig = plt.figure(figsize=(12,12))
-    for i in range(num_classes):
-        ax = fig.add_subplot(2, 5, 1 + i, xticks=[], yticks=[])
-        idx = np.where(train_labels[:]==i)[0]
-        features_idx = train_features[idx,::]
-        img_num = np.random.randint(features_idx.shape[0])
-        im = features_idx[img_num]
-        ax.set_title(class_names[i])
-        plt.imshow(im)
-    plt.show()
+
+
+  num_classes =10
+  (train_features, train_labels), (test_features, test_labels) = cifar10.load_data()
+  class_names = ['airplane','automobile','bird','cat','deer',
+                 'dog','frog','horse','ship','truck']
+  fig = plt.figure(figsize=(12,12))
+  for i in range(num_classes):
+      ax = fig.add_subplot(2, 5, 1 + i, xticks=[], yticks=[])
+      idx = np.where(train_labels[:]==i)[0]
+      features_idx = train_features[idx,::]
+      img_num = np.random.randint(features_idx.shape[0])
+      im = features_idx[img_num]
+      ax.set_title(class_names[i])
+      plt.imshow(im)
+  plt.show()
 
 def show_one_class_images_cifar10(classname ='CAT',numimage=10):
   from keras.datasets import cifar10
