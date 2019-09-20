@@ -191,6 +191,8 @@ def draw_sample(n, rows=4, cols=4, imfile=None, fontsize=12):
     import numpy as np
     import os
 
+    class_names = ['airplane','automobile','bird','cat','deer',
+                   'dog','frog','horse','ship','truck']
     (X_train, y_train), (X_test, y_test) = cifar10.load_data()
     y_train = y_train.reshape(y_train.shape[0])  # somehow y_train comes as a 2D nx1 matrix
   ## To test the second utility, let's draw the first 15 images in a 3x5 grid:
@@ -201,7 +203,7 @@ def draw_sample(n, rows=4, cols=4, imfile=None, fontsize=12):
         plt.subplot(rows, cols, i+1)
         im = X_train[n+i].reshape(32,32,3)
         plt.imshow(im, cmap='gnuplot2')
-        plt.title("{}".format(class_name[y_train[n+i]]), fontsize=fontsize)
+        plt.title("{}".format(class_names[y_train[n+i]]), fontsize=fontsize)
         plt.axis('off')
         plt.subplots_adjust(wspace=0.6, hspace=0.01)
         #plt.subplots_adjust(hspace=0.45, wspace=0.45)
