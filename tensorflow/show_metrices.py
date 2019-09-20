@@ -184,16 +184,6 @@ def cifar10_misclassified_gradcam_heatmap_images(Y_pred,Y_true_nor,X_test,model2
   # If you don't do tight_layout() you'll have weird overlaps
   plt.tight_layout()
 
-def draw_img(i):
-    import matplotlib.pyplot as plt
-    ##Let's draw image 7 in X_train for example
-    ## draw_img(7)
-    im = X_train[i]
-    c = y_train[i]
-    plt.imshow(im)
-    plt.title("Class %d (%s)" % (c, class_name[c]))
-    plt.axis('on')
-
 def draw_sample(n, rows=4, cols=4, imfile=None, fontsize=12):
   from keras.datasets import cifar10
   import time
@@ -206,6 +196,7 @@ def draw_sample(n, rows=4, cols=4, imfile=None, fontsize=12):
     y_train = y_train.reshape(y_train.shape[0])  # somehow y_train comes as a 2D nx1 matrix
     ## To test the second utility, let's draw the first 15 images in a 3x5 grid:
     ## draw_sample(0, 3, 5)
+
 
     for i in range(0, rows*cols):
         plt.subplot(rows, cols, i+1)
@@ -267,5 +258,20 @@ def show_one_class_images_cifar10(classname ='CAT',numimage=10):
     ax.set_title(class_names[result])
     plt.imshow(im)
   plt.show()
-  
+
+def draw_image_cifar10(i):
+    ## This function is to draw nth image from anuy
+    import matplotlib.pyplot as plt
+    from keras.datasets import cifar10
+    class_names = ['airplane','automobile','bird','cat','deer',
+               'dog','frog','horse','ship','truck']
+    ##Let's draw image 7 in X_train for example
+    (x_train, y_train), (x_test, y_test) = cifar10.load_data()
+    ## draw_img(7)
+    im = x_train[i]
+    c = y_train[i]
+    plt.imshow(im)
+    plt.title("Class %d (%s)" % (c, class_name[c]))
+    plt.axis('on')
+
 
