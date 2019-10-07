@@ -36,7 +36,27 @@ def show_classification_matrix(Y_pred, test_labels):
     # # compute the confusion matrix
     print("Confusion matrix:\n%s" % confusion_matrix(y_true=Y_true, y_pred=Y_pred_classes))
     # compute the confusion matrix
-    class_names = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+    # class_names = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+    class_names = ['beaver', 'dolphin', 'otter', 'seal', 'whale',
+                   'aquarium fish', 'flatfish', 'ray', 'shark', 'trout',
+                   'orchids','poppies','roses','sunflowers','tulips',
+                   'bottles','bowls','cans', 'cups', 'plates',
+                   'apples', 'mushrooms', 'oranges', 'pears', 'sweet peppers',
+                   'clock', 'computer keyboard', 'lamp', 'telephone', 'television',
+                   'bed', 'chair', 'couch', 'table', 'wardrobe',
+                   'bee', 'beetle', 'butterfly', 'caterpillar', 'cockroach',
+                   'bear', 'leopard', 'lion', 'tiger', 'wolf',
+                   'bridge', 'castle', 'house', 'road', 'skyscraper',
+                   'cloud', 'forest', 'mountain', 'plain', 'sea',
+                   'camel', 'cattle', 'chimpanzee', 'elephant', 'kangaroo',
+                   'fox', 'porcupine', 'possum', 'raccoon', 'skunk',
+                   'crab', 'lobster', 'snail', 'spider', 'worm',
+                   'baby', 'boy', 'girl', 'man', 'woman',
+                   'crocodile', 'dinosaur', 'lizard', 'snake', 'turtle',
+                   'hamster', 'mouse', 'rabbit', 'shrew', 'squirrel',
+                   'maple', 'oak', 'palm', 'pine', 'willow',
+                   'bicycle', 'bus', 'motorcycle', 'pickup truck', 'train',
+                   'lawn-mower', 'rocket', 'streetcar', 'tank', 'tractor']
     confusion_mtx = confusion_matrix(Y_true, Y_pred_classes)
     # plot_confusion_matrix(confusion_mtx, classes=class_names,
     #                   title='Confusion matrix, without normalization')
@@ -67,7 +87,27 @@ def show_classification_matrix_image(Y_pred, test_labels):
     # # compute the confusion matrix
     print("Confusion matrix:\n%s" % confusion_matrix(y_true=Y_true, y_pred=Y_pred_classes))
     # compute the confusion matrix
-    class_names = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+    # class_names = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+    class_names = ['beaver', 'dolphin', 'otter', 'seal', 'whale',
+                   'aquarium fish', 'flatfish', 'ray', 'shark', 'trout',
+                   'orchids','poppies','roses','sunflowers','tulips',
+                   'bottles','bowls','cans', 'cups', 'plates',
+                   'apples', 'mushrooms', 'oranges', 'pears', 'sweet peppers',
+                   'clock', 'computer keyboard', 'lamp', 'telephone', 'television',
+                   'bed', 'chair', 'couch', 'table', 'wardrobe',
+                   'bee', 'beetle', 'butterfly', 'caterpillar', 'cockroach',
+                   'bear', 'leopard', 'lion', 'tiger', 'wolf',
+                   'bridge', 'castle', 'house', 'road', 'skyscraper',
+                   'cloud', 'forest', 'mountain', 'plain', 'sea',
+                   'camel', 'cattle', 'chimpanzee', 'elephant', 'kangaroo',
+                   'fox', 'porcupine', 'possum', 'raccoon', 'skunk',
+                   'crab', 'lobster', 'snail', 'spider', 'worm',
+                   'baby', 'boy', 'girl', 'man', 'woman',
+                   'crocodile', 'dinosaur', 'lizard', 'snake', 'turtle',
+                   'hamster', 'mouse', 'rabbit', 'shrew', 'squirrel',
+                   'maple', 'oak', 'palm', 'pine', 'willow',
+                   'bicycle', 'bus', 'motorcycle', 'pickup truck', 'train',
+                   'lawn-mower', 'rocket', 'streetcar', 'tank', 'tractor']
     confusion_mtx = confusion_matrix(Y_true, Y_pred_classes)
     plot_confusion_matrix(confusion_mtx, classes=class_names,
                       title='Confusion matrix, without normalization')
@@ -81,7 +121,27 @@ def show_misclassified_images_cifar10(Y_pred, Y_true_nor, X_test):
     import numpy as np
     import os
 
-    class_names = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+    # class_names = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+    class_names = ['beaver', 'dolphin', 'otter', 'seal', 'whale',
+                   'aquarium fish', 'flatfish', 'ray', 'shark', 'trout',
+                   'orchids','poppies','roses','sunflowers','tulips',
+                   'bottles','bowls','cans', 'cups', 'plates',
+                   'apples', 'mushrooms', 'oranges', 'pears', 'sweet peppers',
+                   'clock', 'computer keyboard', 'lamp', 'telephone', 'television',
+                   'bed', 'chair', 'couch', 'table', 'wardrobe',
+                   'bee', 'beetle', 'butterfly', 'caterpillar', 'cockroach',
+                   'bear', 'leopard', 'lion', 'tiger', 'wolf',
+                   'bridge', 'castle', 'house', 'road', 'skyscraper',
+                   'cloud', 'forest', 'mountain', 'plain', 'sea',
+                   'camel', 'cattle', 'chimpanzee', 'elephant', 'kangaroo',
+                   'fox', 'porcupine', 'possum', 'raccoon', 'skunk',
+                   'crab', 'lobster', 'snail', 'spider', 'worm',
+                   'baby', 'boy', 'girl', 'man', 'woman',
+                   'crocodile', 'dinosaur', 'lizard', 'snake', 'turtle',
+                   'hamster', 'mouse', 'rabbit', 'shrew', 'squirrel',
+                   'maple', 'oak', 'palm', 'pine', 'willow',
+                   'bicycle', 'bus', 'motorcycle', 'pickup truck', 'train',
+                   'lawn-mower', 'rocket', 'streetcar', 'tank', 'tractor']
     # print(score)
     # Convert validation observations to one hot vectors
     Y_true = np.argmax(Y_true_nor, axis=1)
@@ -138,7 +198,26 @@ def cifar100_misclassified_gradcam_heatmap_images(Y_pred,Y_true_nor,X_test,model
   import os
 
   class_names = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
-
+  class_names = ['beaver', 'dolphin', 'otter', 'seal', 'whale',
+                 'aquarium fish', 'flatfish', 'ray', 'shark', 'trout',
+                 'orchids','poppies','roses','sunflowers','tulips',
+                 'bottles','bowls','cans', 'cups', 'plates',
+                 'apples', 'mushrooms', 'oranges', 'pears', 'sweet peppers',
+                 'clock', 'computer keyboard', 'lamp', 'telephone', 'television',
+                 'bed', 'chair', 'couch', 'table', 'wardrobe',
+                 'bee', 'beetle', 'butterfly', 'caterpillar', 'cockroach',
+                 'bear', 'leopard', 'lion', 'tiger', 'wolf',
+                 'bridge', 'castle', 'house', 'road', 'skyscraper',
+                 'cloud', 'forest', 'mountain', 'plain', 'sea',
+                 'camel', 'cattle', 'chimpanzee', 'elephant', 'kangaroo',
+                 'fox', 'porcupine', 'possum', 'raccoon', 'skunk',
+                 'crab', 'lobster', 'snail', 'spider', 'worm',
+                 'baby', 'boy', 'girl', 'man', 'woman',
+                 'crocodile', 'dinosaur', 'lizard', 'snake', 'turtle',
+                 'hamster', 'mouse', 'rabbit', 'shrew', 'squirrel',
+                 'maple', 'oak', 'palm', 'pine', 'willow',
+                 'bicycle', 'bus', 'motorcycle', 'pickup truck', 'train',
+                 'lawn-mower', 'rocket', 'streetcar', 'tank', 'tractor']
   # print(score)
   # Convert validation observations to one hot vectors
   Y_true = np.argmax(Y_true_nor,axis = 1)
