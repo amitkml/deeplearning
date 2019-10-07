@@ -311,7 +311,7 @@ def show_one_class_images_cifar100(classname ='CAT',numimage=10):
   import numpy as np
   import os
 
-  num_classes = 10
+  num_classes = 100
   (x_train, y_train), (x_test, y_test) = cifar100.load_data()
 
   myclass = np.char.lower(classname)  ## lets convert to lower case to ensure we dont clash
