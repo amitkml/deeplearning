@@ -304,7 +304,7 @@ def display_each_class_one_cifar100():
         plt.imshow(im)
     plt.show()
 
-def show_one_class_images_cifar10(classname ='CAT',numimage=10):
+def show_one_class_images_cifar100(classname ='CAT',numimage=10):
   from keras.datasets import cifar100
   import time
   import matplotlib.pyplot as plt
@@ -348,7 +348,7 @@ def show_one_class_images_cifar10(classname ='CAT',numimage=10):
     plt.imshow(im)
   plt.show()
 
-def draw_image_cifar10(i):
+def draw_image_cifar100(i):
     ## This function is to draw nth image from anuy
     import matplotlib.pyplot as plt
     from keras.datasets import cifar100
