@@ -271,7 +271,7 @@ def display_each_class_one_cifar100():
     import os
 
 
-    num_classes =10
+    num_classes =100
     (train_features, train_labels), (test_features, test_labels) = cifar100.load_data()
     class_names = ['beaver', 'dolphin', 'otter', 'seal', 'whale',
                    'aquarium fish', 'flatfish', 'ray', 'shark', 'trout',
