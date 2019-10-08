@@ -425,7 +425,7 @@ def display_each_class_one_cifar100():
                    'lawn-mower', 'rocket', 'streetcar', 'tank', 'tractor']
     fig = plt.figure(figsize=(12,12))
     for i in range(num_classes):
-        ax = fig.add_subplot(2, 5, 1 + i, xticks=[], yticks=[])
+        ax = fig.add_subplot(10, 10, 1 + i, xticks=[], yticks=[])
         idx = np.where(train_labels[:]==i)[0]
         features_idx = train_features[idx,::]
         img_num = np.random.randint(features_idx.shape[0])
@@ -469,7 +469,7 @@ def show_one_class_images_cifar100(classname ='CAT',numimage=10):
   result = np.where(class_names == myclass)[0][0]
   fig = plt.figure(figsize=(12,12))
   for i in range(numimage):
-    ax = fig.add_subplot(2, 5, 1 + i, xticks=[], yticks=[])
+    ax = fig.add_subplot(5, 10, 1 + i, xticks=[], yticks=[])
     idx = np.where(y_train[:]==result)[0]
     features_idx = x_train[idx,::]
     img_num = np.random.randint(features_idx.shape[0])
