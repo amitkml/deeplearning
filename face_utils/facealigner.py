@@ -1,7 +1,7 @@
 # import the necessary packages
-from .helpers import FACIAL_LANDMARKS_68_IDXS
-from .helpers import FACIAL_LANDMARKS_5_IDXS
-from .helpers import shape_to_np
+from helpers import FACIAL_LANDMARKS_68_IDXS
+from helpers import FACIAL_LANDMARKS_5_IDXS
+from helpers import shape_to_np
 import numpy as np
 import cv2
 
@@ -86,8 +86,8 @@ def drawPolyline(im, landmarks, start, end, isClosed=False):
 		point = [landmarks.part(i).x, landmarks.part(i).y]
 		points.append(point)
 
-  	points = np.array(points, dtype=np.int32)
-  	cv2.polylines(im, [points], isClosed, (255, 200, 0),
+	points = np.array(points, dtype=np.int32)
+	cv2.polylines(im, [points], isClosed, (255, 200, 0),
 				  thickness=2, lineType=cv2.LINE_8)
 
 # Use this function for any model other than
@@ -98,11 +98,10 @@ def renderFace2(im, landmarks, color=(0, 255, 0), radius=3):
 
 
 def writeLandmarksToFile(landmarks, landmarksFileName):
-  with open(landmarksFileName, 'w') as f:
-    for p in landmarks.parts():
-      f.write("%s %s\n" %(int(p.x),int(p.y)))
-
-  f.close()
+	with open(landmarksFileName, 'w') as f:
+		for p in landmarks.parts():
+			f.write("%s %s\n" %(int(p.x),int(p.y)))
+		f.close()
 
 def GenerateLandMarkFile(faceRects):
 	import dlib
@@ -118,27 +117,27 @@ def GenerateLandMarkFile(faceRects):
 
   # Loop over all detected face rectangles
 
-  for i in range(0, len(faceRects)):
-    newRect = dlib.rectangle(int(faceRects[i].left()),
-                             int(faceRects[i].top()),
-                             int(faceRects[i].right()),
-                             int(faceRects[i].bottom()))
+	for i in range(0, len(faceRects)):
+		newRect = dlib.rectangle(int(faceRects[i].left()),
+								 int(faceRects[i].top()),
+								 int(faceRects[i].right()),
+								 int(faceRects[i].bottom()))
   # For every face rectangle, run landmarkDetector
-    landmarks = landmarkDetector(im, newRect)
+		landmarks = landmarkDetector(im, newRect)
   # Print number of landmarks
-    if i==0:
-      print("Number of landmarks",len(landmarks.parts()))
+		if i==0:
+			print("Number of landmarks",len(landmarks.parts()))
 
   # Store landmarks for current face
-    landmarksAll.append(landmarks)
+		landmarksAll.append(landmarks)
 
   # Next, we render the outline of the face using
   # detected landmarks.
-    renderFace(im, landmarks)
+		renderFace(im, landmarks)
 
   # The code below saves the landmarks to
   # results/family_0.txt … results/family_4.txt.
-    landmarksFileName = landmarksBasename +"_"+ str(i)+ ".txt"
-    print("Saving landmarks to", landmarksFileName)
+		landmarksFileName = landmarksBasename +"_"+ str(i)+ ".txt"
+		print("Saving landmarks to", landmarksFileName)
   # Write landmarks to disk
-    writeLandmarksToFile(landmarks, landmarksFileName)
+		writeLandmarksToFile(landmarks, landmarksFileName)
