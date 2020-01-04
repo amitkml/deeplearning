@@ -21,7 +21,8 @@ class ImageProcessor:
         self.resized_dir = resized_dir
 
     def resize_imgs(self, path):
-         """This function reads all images from specified path and resized them. All resized images are kept in resized directory"""
+
+        # """This function reads all images from specified path and resized them. All resized images are kept in resized directory"""
         for i, img_path in enumerate(glob.glob(path)):
 
             print(i, img_path)
@@ -30,10 +31,10 @@ class ImageProcessor:
             name = img_path.split("\\")[-1].split('.')[0]
             if not os.path.exists(f"resized_{self.img_size[0]}_{self.img_size[1]}"):
                 os.makedirs(f"resized_{self.img_size[0]}_{self.img_size[1]}")
-        img.save(f"resized_{self.img_size[0]}_{self.img_size[1]}/{name}.png")
+                img.save(f"resized_{self.img_size[0]}_{self.img_size[1]}/{name}.png")
 
     def resize_imgs_cv2(self,imagePath,TargetSize):
-         """This function reads all images from specified path and resized them by using open CV. All resized images are kept in RAW_Image_Resized directory"""
+        # """This function reads all images from specified path and resized them by using open CV. All resized images are kept in RAW_Image_Resized directory"""
         !mkdir self.resized_dir
         for bb,file in enumerate (glob.glob(imagePath)):
             img = io.imread(file)
@@ -43,7 +44,7 @@ class ImageProcessor:
             cv2.destroyAllWindows()
 
     def read_images_dir(TargetPath):
-        """This function reads all images from specified path returns in numpy array"""
+        #"""This function reads all images from specified path returns in numpy array"""
         car_images = []
 
         for bb,file in enumerate (glob.glob(TargetPath)):
