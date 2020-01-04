@@ -55,7 +55,7 @@ class ImageProcessor:
             car_images.append(img)
 
         car_images = np.asarray(car_images)
-         return car_images
+        return car_images
 
 
 
