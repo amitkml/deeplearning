@@ -35,7 +35,9 @@ class ImageProcessor:
 
     def resize_imgs_cv2(self,imagePath,TargetSize):
         # """This function reads all images from specified path and resized them by using open CV. All resized images are kept in RAW_Image_Resized directory"""
-        !mkdir self.resized_dir
+        if not os.path.exists(self.resized_dir):
+            os.makedirs(fself.resized_dir)
+        # !mkdir self.resized_dir
         for bb,file in enumerate (glob.glob(imagePath)):
             img = io.imread(file)
             img = cv2.resize(img, dsize=(TargetSize, TargetSize), interpolation=cv2.INTER_CUBIC)
