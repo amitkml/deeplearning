@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 import os
-import google_images_download
-
+# import google_images_download
+from google_images_download import google_images_download   #importing the library
 params = (
     ('_ajax', '1'),
 )
@@ -39,7 +39,12 @@ def get_discovers(bs4_obj):
 
 def google_image_download(keywords = "Polar Bear", limit = 150, chromedriver = "/usr/bin/chromedriver"):
     # pip install google_images_download
-    googleimagesdownload  --keywords keywords --limit limit --chromedriver chromedriver
+    ## inspired from https://google-images-download.readthedocs.io/en/latest/examples.html#
+    
+    response = google_images_download.googleimagesdownload()   #class instantiation
+    arguments = {"keywords":keywords,"limit":limit,"print_urls":True}   #creating list of arguments
+    paths = response.download(arguments)   #passing the arguments to the function
+    # googleimagesdownload  --keywords keywords --limit limit --chromedriver chromedriver
 
 
 
