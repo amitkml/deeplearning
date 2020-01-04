@@ -38,8 +38,8 @@ def get_discovers(bs4_obj):
     return relevant_links
 
 def google_image_download(keywords = "Polar Bear", limit = 150, chromedriver = "/usr/bin/chromedriver"):
-    !pip install google_images_download
-    !googleimagesdownload  --keywords keywords --limit limit --chromedriver chromedriver
+    pip install google_images_download
+    googleimagesdownload  --keywords keywords --limit limit --chromedriver chromedriver
 
 
 
@@ -61,20 +61,20 @@ def html_to_bs4(html):
     return BeautifulSoup(html, 'lxml')
 
 
-if __name__ == "__main__":
-    counter = 0
-    for i in range(0, 1000):
-        try:
-            html_to_parse = get_html_to_parse(i)
-            bs4_obj = json_to_bs4(html_to_parse)
-            relevant = get_discovers(bs4_obj)
-            for link in relevant:
-                print(link)
-                try:
-                    save_img_from_url(link, counter)
-                    counter += 1
-                except:
-                    print("Error...")
-                    continue
-        except:
-            continue
+# if __name__ == "__main__":
+#     counter = 0
+#     for i in range(0, 1000):
+#         try:
+#             html_to_parse = get_html_to_parse(i)
+#             bs4_obj = json_to_bs4(html_to_parse)
+#             relevant = get_discovers(bs4_obj)
+#             for link in relevant:
+#                 print(link)
+#                 try:
+#                     save_img_from_url(link, counter)
+#                     counter += 1
+#                 except:
+#                     print("Error...")
+#                     continue
+#         except:
+#             continue
