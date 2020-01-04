@@ -5,7 +5,8 @@ import cv2
 #globbing utility.
 import glob
 from skimage import io
-%matplotlib inline
+
+# %matplotlib inline
 from matplotlib import pyplot as plt
 import numpy as np
 from IPython.display import display
